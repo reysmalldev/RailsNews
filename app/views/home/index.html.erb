@@ -1,0 +1,15 @@
+<div>
+  <% @noticias.each do |noticia| %>
+    <h2>Title: <%= noticia['title'] %></h2>
+    <h2>Descricao: <%= noticia['description'] %></h2>
+    <h2>Link para fonte: <%= noticia['url'] %></h2>
+    <h2>Autor: <%= noticia['author'] %></h2>
+    <h2>Data de publicacao: <%= noticia['published'] %></h2>
+
+    <% if noticia['image'].present? && noticia['image'].start_with?('http') %>
+      <img src="<%= noticia['image'] %>" alt="Noticia Image" style="max-width: 300px; max-height: 200px;">
+    <% end %>
+
+    <br> <br>
+  <% end %>
+</div>
