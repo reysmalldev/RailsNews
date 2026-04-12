@@ -1,9 +1,9 @@
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 
 class HomeController < ApplicationController
   def index
     api_client = CurrentsApiService.new
-    @news = api_client.latest_news['news']
+    @news = api_client.latest_news["news"]
   end
 end
