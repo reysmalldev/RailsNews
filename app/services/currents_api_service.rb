@@ -8,4 +8,3 @@ class CurrentsApiService
     })
   end
 end
-  
