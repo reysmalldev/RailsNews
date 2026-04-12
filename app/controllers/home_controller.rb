@@ -4,6 +4,9 @@ require "json"
 class HomeController < ApplicationController
   def index
     api_client = CurrentsApiService.new
-    @news = api_client.latest_news["news"]
+    @categories = CurrentsApiService::CATEGORIES
+    @selected_category = params[:category]
+    
+    @news = api_client.latest_news(category: @selected_category)["news"]
   end
 end
