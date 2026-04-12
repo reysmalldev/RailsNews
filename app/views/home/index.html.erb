@@ -1,20 +1,29 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <div class="max-w-7xl mx-auto px-4 py-10 bg-gray-50 min-h-screen">
-  <header class="mb-12 border-b border-gray-200 pb-5">
+  <header class="mb-8 border-b border-gray-200 pb-5">
     <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">
       Feed de <span class="text-blue-600">Notícias</span>
     </h1>
     <p class="text-gray-500 mt-2">As últimas atualizações do mundo em tempo real.</p>
   </header>
 
-  <div class="flex justify-center gap-2 flex-wrap mb-8">
-    <%= link_to "Todos", news_path,
+  <div class="flex justify-center gap-2 flex-wrap mb-3">
+    <%= link_to "All", news_path(language: @selected_language),
         class: "px-4 py-2 rounded-full transition #{@selected_category.nil? ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-blue-500 hover:text-white'}" %>
   
     <% @categories.each do |category| %>
       <%= link_to category.humanize, news_path(category: category),
       class: "px-4 py-2 rounded-full transition #{@selected_category == category ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-blue-500 hover:text-white'}" %>
+    <% end %>
+  </div>
+
+  <div class="flex justify-left gap-2 flex-wrap mb-4 mt-0">
+    <%= link_to "🌍", news_path(category: @selected_category),
+        class: "px-4 py-2 rounded-full transition #{@selected_language.nil? ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-blue-500 hover:text-white'}" %>
+    <% @languages.each do |flag, code| %>
+      <%= link_to flag, news_path(category: @selected_category, language: code),
+          class: "px-4 py-2 rounded-full transition #{@selected_language == code ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-blue-500 hover:text-white'}" %>
     <% end %>
   </div>
 
